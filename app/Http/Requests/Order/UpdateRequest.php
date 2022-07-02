@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,11 +26,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'=>['nullable','integer',Rule::unique('orders')->ignore(request('id'))],
-            'fio'=>'nullable|string|max:255',
-            'sum'=>'nullable|numeric',
-            'created_date'=>'nullable|date',
-            'delivery_address'=>'nullable|string|max:1000'
+            'number' => ['nullable', 'integer', Rule::unique('orders','number')->ignore(request('number'),'number')],
+            'fio' => 'nullable|string|max:255',
+            'sum' => 'nullable|numeric',
+            'created_date' => 'nullable|date',
+            'delivery_address' => 'nullable|string|max:1000'
         ];
     }
 }

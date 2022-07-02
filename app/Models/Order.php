@@ -29,13 +29,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @mixin \Eloquent
  * @property string|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereDeletedAt($value)
+ * @property int $number
+ * @method static \Illuminate\Database\Query\Builder|Order onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|Order withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Order withoutTrashed()
  */
 class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
-
+    protected $primaryKey = 'number';
     /**
      * The "booted" method of the model.
      *
@@ -44,7 +49,7 @@ class Order extends Model
     protected static function booted()
     {
         static::creating(function ($order) {
-            if(is_null($order->created_date)){
+            if (is_null($order->created_date)) {
                 $order->created_date = now();
             }
         });

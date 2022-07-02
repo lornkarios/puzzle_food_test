@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('number')->unique();
             $table->string('fio');
             $table->decimal('sum',15,2,true);
             $table->dateTime('created_date');

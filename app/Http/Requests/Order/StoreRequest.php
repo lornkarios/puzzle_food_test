@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'=>'nullable|integer|unique:orders',
+            'number'=>'nullable|integer|unique:orders',
             'fio'=>'required|string|max:255',
             'sum'=>'required|numeric',
             'created_date'=>'nullable|date',
